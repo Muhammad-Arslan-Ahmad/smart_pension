@@ -3,19 +3,19 @@
 require_relative 'base'
 
 module Decorators
-  class MostView < Base
+  class UniqueView < Base
     private
 
     def views_sorted
-      @page_views.sort_by { |_path, ips| -ips.count }
+      @page_views.sort_by { |_path, ips| -ips.uniq.count }
     end
 
     def views_count(views)
-      views.count
+      views.uniq.count
     end
 
     def view_detail
-      'visits'
+      'unique views'
     end
   end
 end
